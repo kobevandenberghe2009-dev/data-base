@@ -1,0 +1,32 @@
+<h1>CRM</h1>
+
+<a href="/logout">Logout</a>
+
+<form method="get">
+    <input name="q" placeholder="zoek">
+</form>
+
+<form method="POST" action="/add">
+    <input name="voornaam">
+    <input name="achternaam">
+    <input name="telefoon">
+    <input name="email">
+    <input name="woonplaats">
+    <textarea name="notities"></textarea>
+    <button>Toevoegen</button>
+</form>
+
+<hr>
+
+{% for p in people %}
+<div>
+    <b>{{p.voornaam}} {{p.achternaam}}</b>
+    <a href="/edit/{{p.id}}">Edit</a>
+    <a href="/delete/{{p.id}}">Delete</a>
+
+    <form action="/upload/{{p.id}}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button>Upload</button>
+    </form>
+</div>
+{% endfor %}
